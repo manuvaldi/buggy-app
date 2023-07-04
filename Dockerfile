@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM docker.io/library/ubuntu:trusty
 # Install packages
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -y 
