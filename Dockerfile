@@ -1,9 +1,10 @@
 FROM ubuntu:trusty
 # Install packages
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && \
-  apt-get -y install supervisor git apache2 libapache2-mod-php5 mysql-server php5-mysql pwgen php-apc php5-mcrypt && \
-  echo "ServerName localhost" >> /etc/apache2/apache2.conf
+RUN apt-get update -y 
+RUN apt-get -y install supervisor git apache2 libapache2-mod-php5 php5-mysql pwgen php-apc php5-mcrypt
+RUN ln -s -f /bin/true /usr/bin/chfn && apr-get -y install mysql-server && \
+    echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Add image configuration and scripts
 ADD lamp/start-apache2.sh /start-apache2.sh
