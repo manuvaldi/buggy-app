@@ -2,7 +2,8 @@ FROM docker.io/library/ubuntu:lunar
 # Install packages
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -y 
-RUN apt-get -y install supervisor git apache2 libapache2-mod-php5 php5-mysql pwgen php-apc php5-mcrypt
+RUN apt-get -y install supervisor git apache2 libapache2-mod-php5 php5-mysql pwgen php-apc php5-mcrypt \
+    || apt-get -y install supervisor git apache2 libapache2-mod-php php-mysql pwgen php-apcu php-mcrypt
 RUN ln -s -f /bin/true /usr/bin/chfn && apt-get -y install mysql-server && \
     echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
