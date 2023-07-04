@@ -3,7 +3,7 @@ FROM ubuntu:trusty
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -y 
 RUN apt-get -y install supervisor git apache2 libapache2-mod-php5 php5-mysql pwgen php-apc php5-mcrypt
-RUN ln -s -f /bin/true /usr/bin/chfn && apr-get -y install mysql-server && \
+RUN ln -s -f /bin/true /usr/bin/chfn && apt-get -y install mysql-server && \
     echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Add image configuration and scripts
