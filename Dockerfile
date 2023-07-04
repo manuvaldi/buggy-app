@@ -1,4 +1,4 @@
-FROM docker.io/library/ubuntu:trusty
+FROM docker.io/library/ubuntu:lunar
 # Install packages
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -y 
