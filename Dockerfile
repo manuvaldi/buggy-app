@@ -4,7 +4,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -y 
 RUN apt-get -y install supervisor git apache2 libapache2-mod-php5 php5-mysql pwgen php-apc php5-mcrypt \
     || apt-get -y install supervisor git apache2 libapache2-mod-php php-mysql pwgen php-apcu php-mcrypt
-RUN ln -s -f /bin/true /usr/bin/chfn && apt-get -y install default-mysql-server-core && \
+#RUN ln -s -f /bin/true /usr/bin/chfn && apt-get -y install default-mysql-server-core && \
+RUN ln -s -f /bin/true /usr/bin/chfn && apt-get -y install mysql-server && \
     echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Add image configuration and scripts
@@ -36,7 +37,8 @@ ENV PHP_UPLOAD_MAX_FILESIZE 10M
 ENV PHP_POST_MAX_SIZE 10M
 
 # Add volumes for MySQL
-VOLUME  ["/etc/mysql", "/var/lib/mysql" ]
+#VOLUME  ["/etc/mysql", "/var/lib/mysql" ]
+VOLUME  ["/etc/mysql" ]
 
 EXPOSE 80 3306
 CMD ["/run.sh"]
@@ -45,7 +47,7 @@ RUN apt-get install -y libgd-dev php5-gd || apt-get install -y libgd-dev php-gd
 RUN rm -fr /app
 COPY website /app
 RUN chmod 777 /app/upload
-RUN chmod 777 /var/lib/mysql
+#RUN chmod 777 /var/lib/mysql
 
 COPY current.sql .
 ADD create_mysql_admin_user.sh /create_mysql_admin_user.sh
