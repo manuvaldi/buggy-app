@@ -33,6 +33,6 @@ echo "Please remember to change the above password as soon as possible!"
 echo "MySQL user 'root' has no password but only allows local connections"
 echo "========================================================================"
 
-mysql -uroot wackopicko -e "select count(*) from users;" > /dev/null 2> /dev/null || mysql -u root < current.sql
+mysql -uroot wackopicko -e "select count(*) from users;" > /dev/null 2> /dev/null || mysql -uroot wackopicko -e "select count(*) from mysql.user;" > /dev/null 2> /dev/null || mysql -u root < current.sql
 
 mysqladmin -uroot shutdown
