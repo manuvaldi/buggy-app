@@ -41,7 +41,7 @@ VOLUME  ["/etc/mysql", "/var/lib/mysql" ]
 EXPOSE 80 3306
 CMD ["/run.sh"]
 
-RUN apt-get update && apt-get install -y libgd-dev php5-gd
+RUN apt-get install -y libgd-dev php-gd
 RUN rm -fr /app
 COPY website /app
 RUN chmod 777 /app/upload
