@@ -45,6 +45,7 @@ RUN apt-get install -y libgd-dev php5-gd || apt-get install -y libgd-dev php-gd
 RUN rm -fr /app
 COPY website /app
 RUN chmod 777 /app/upload
+RUN chmod 777 /var/lib/mysql
 
 COPY current.sql .
 ADD create_mysql_admin_user.sh /create_mysql_admin_user.sh
