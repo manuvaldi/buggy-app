@@ -8,7 +8,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y python3-pip
 
 WORKDIR /sdwa
 
-RUN cd /sdwa && ls -al && && pip3 install -r requirements.txt --break-system-packages
+RUN cd /sdwa && ls -al && pip3 install -r requirements.txt --break-system-packages
 
 RUN cd /sdwa && rm -f db/vuln_db.sqlite && python3 db/setup_db.py
 
