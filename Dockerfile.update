@@ -4,13 +4,13 @@ RUN mkdir -p /sdwa
 
 ADD . /sdwa/
 
-RUN apt-get update && apt-get upgrade && apt-get install -y python3-pip
+RUN apt-get update && apt-get upgrade -y && apt-get install -y python3-pip
 
 WORKDIR /sdwa
 
 RUN pip3 install -r requirements.txt --break-system-packages
 
-RUN cd /sdwa && rm -f db/vuln_db.sqlite && python3 /sdwa/db/setup_db.py
+RUN rm -f db/vuln_db.sqlite && python3 db/setup_db.py
 
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
