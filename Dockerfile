@@ -1,10 +1,10 @@
-FROM ubuntu:bionic
+FROM ubuntu:lunar
 
 RUN mkdir -p /sdwa
 
 ADD . /sdwa/
 
-RUN apt-get update && apt-get install -y python3-pip git
+RUN apt-get update && apt-get upgrade && apt-get install -y python3-pip git
 
 WORKDIR /sdwa
 
