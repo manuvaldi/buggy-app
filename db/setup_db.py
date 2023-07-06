@@ -36,13 +36,10 @@ class Product(db.Model):
         self.price = price
         self.quantity = quantity
 
-
-
-db.create_all()
 users = [
-    {'username': "user", 'password': "user_password", "admin": False},
-    {'username': "user2", 'password': "user2_password", "admin": False},
-    {'username': "flask_admin", 'password': "password@123", "admin": True},
+    User("user","user_password",False),
+    User("user2","user2_password",False),
+    User("flask_admin","password@123",True)
 ]
 
 products = [
@@ -53,8 +50,15 @@ products = [
     Product("Strawberry", 1.89, 30)
 ]
 
-add_users(db, users)
+with app.app_context():
+    db.create_all()
+    db.session.commit()
 
-for product in products:
-    db.session.add(product)
-db.session.commit()
+    for user in users:
+       db.session.add(user)
+       db.session.commit()
+
+    for product in products:
+       db.session.add(product)
+       db.session.commit()
+    db.session.commit()
